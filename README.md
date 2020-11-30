@@ -5,7 +5,7 @@ This is the first version of a WooCommerce library in GO lang. Currently the fun
 First you have to install the package:
 
 ```console
-go get gitHub.com/jojojojonas/WooCommerceV3
+go get github.com/jojojojonas/woocommerce
 ```
 
 ## How to use?
@@ -16,6 +16,9 @@ In order to get all orders delivered back you should proceed as follows. We have
 
 ```go
 response, err := woocommerce.Orders(woocommerce.OrderData("shop.test.de", "ck_", "cs_", false, "", ""))
+if err != nil {
+    fmt.Println("The following error occurred while loading all orders: ", err)
+}
 ```
 
 ### Get orders in a period
@@ -23,4 +26,7 @@ To find orders in a certain period of time we simply add a few parameters to the
 
 ```go 
 response, err := woocommerce.Orders(woocommerce.OrderData("shop.test.de", "ck_", "cs_", true, "2020-11-01", "2020-11-30"))
+if err != nil {
+    fmt.Println("The following error occurred while loading the orders in the period: ", err)
+}
 ```
