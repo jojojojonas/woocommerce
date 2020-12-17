@@ -1,10 +1,10 @@
 // Getting the orders from your woocommerce api
 //
-// From Jonas Kwiedor <support@pikbat.de>
+// From Jonas Kwiedor <info@jj-ideeschmiede.de>
 // For my company J&J Ideenschmiede UG
 //
 // In this file you can get all orders from the woocommerce api or all orders from a time period.
-// All documentation is on my github profile github.com/jojojojonas/woocommercev3
+// All documentation is on my github profile github.com/jojojojonas/woocommerce
 
 package woocommerce
 
@@ -51,7 +51,7 @@ type Order struct {
 	CustomerUserAgent  string          `json:"customer_user_agent"`
 	CustomerNote       string          `json:"customer_note"`
 	Billing            Billing         `json:"billing"`
-	Shipping           Shipping        `json:"shipping""`
+	Shipping           Shipping        `json:"shipping"`
 	PaymentMethod      string          `json:"payment_method"`
 	PaymentMethodTitle string          `json:"payment_method_title"`
 	TransactionID      string          `json:"transaction_id"`
@@ -66,7 +66,7 @@ type Order struct {
 	ShippingLines      []ShippingLines `json:"shipping_lines"`
 	FeeLines           []interface{}   `json:"fee_lines"`
 	CouponLines        []interface{}   `json:"coupon_lines"`
-	refunds            []interface{}   `json:"refunds"`
+	Refunds            []interface{}   `json:"refunds"`
 	CurrencySymbol     string          `json:"currency_symbol"`
 	Links              Links           `json:"_links"`
 }
@@ -163,7 +163,6 @@ type Collection struct {
 }
 
 var (
-	url    string
 	page   int = 1
 	orders []Order
 )
@@ -171,7 +170,7 @@ var (
 func Orders(data OrderData) ([]Order, error) {
 
 	// Get the url for request
-	url = "https://" + data.Domain + "/wp-json/wc/v3/orders?consumer_key=" + data.ConsumerKey + "&consumer_secret=" + data.ConsumerSecret + "&per_page=100"
+	url := "https://" + data.Domain + "/wp-json/wc/v3/orders?consumer_key=" + data.ConsumerKey + "&consumer_secret=" + data.ConsumerSecret + "&per_page=100"
 
 	// If time period is true
 	if data.Period {
