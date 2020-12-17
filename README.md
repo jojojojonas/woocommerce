@@ -5,7 +5,7 @@ This is the first version of a WooCommerce library in GO lang. Currently the fun
 First you have to install the package:
 
 ```console
-go get github.com/jojojojonas/woocommerce-api
+go get github.com/jojojojonas/woocommerce
 ```
 
 ## How to use?
