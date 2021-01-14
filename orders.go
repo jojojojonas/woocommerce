@@ -180,14 +180,20 @@ func Orders(data OrderData) ([]Order, error) {
 	// Loop over the sites
 	for {
 
-		// Define request with GET
-		response, err := http.Get(fmt.Sprintf("%s&page=%d", url, page))
+		// Define client
+		client := &http.Client{}
+
+		// New http request
+		request, err := http.NewRequest("GET", fmt.Sprintf("%s&page=%d", url, page), nil)
 		if err != nil {
 			return nil, err
 		}
 
-		// Defer close
-		defer response.Body.Close()
+		// Sent request to woocommerce shop
+		response, err := client.Do(request)
+		if err != nil {
+			return nil, err
+		}
 
 		// Decode data
 		var decode []Order
@@ -212,6 +218,9 @@ func Orders(data OrderData) ([]Order, error) {
 
 		// Add a number to page.
 		page++
+
+		// Close response
+		response.Body.Close()
 
 	}
 
