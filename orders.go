@@ -186,6 +186,9 @@ func Orders(data OrderData) ([]Order, error) {
 			return nil, err
 		}
 
+		// Defer close
+		defer response.Body.Close()
+
 		// Decode data
 		var decode []Order
 
