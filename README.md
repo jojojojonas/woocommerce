@@ -30,3 +30,13 @@ if err != nil {
     fmt.Println("The following error occurred while loading the orders in the period: ", err)
 }
 ```
+
+### Get reports
+If you want to read out the reports, you can do this as follows. For the period there are the following parameters: week, month, last_month and year.
+
+```go
+response, err := woocommerce.Reports("shop.test.de", "ck_", "cs_", "period")
+if err != nil {
+	fmt.Println("The following error occurred while loading the reports: ", err)
+}
+```
